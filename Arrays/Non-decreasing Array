@@ -1,0 +1,26 @@
+Optimized Approach:
+public class Solution {
+    public static boolean isPossible(int[] arr, int n) {
+        // Track the count of decreasing pairs
+        int count = 0;
+
+        for (int i = 0; i < n - 1; i++) {
+            if (arr[i] > arr[i + 1]) {
+                count++;
+
+                if (count > 1) // More than 1 decreasing pair, return false
+                    return false;
+
+                // If possible, try to adjust the elements to fix the decreasing pair
+                if (i > 0 && arr[i - 1] > arr[i + 1]) // Check if adjusting previous element makes sense
+                    arr[i + 1] = arr[i]; // Adjust next element
+                else // Otherwise, adjust current element
+                    arr[i] = arr[i + 1];
+            }
+        }
+
+        return true;
+    }
+}
+TC:O(N)
+SC:O(1)
