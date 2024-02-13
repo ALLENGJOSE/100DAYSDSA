@@ -1,0 +1,43 @@
+Basic approach:
+public static String reverseStringWordWise(String input) {
+    // Split the input string into words
+    String[] words = input.split("\\s+"); //In Java, split("\\s+") is a method call on a string that splits the string into an array of substrings based on a regular expression pattern. 
+  //"Hello World".split("\\s+") would split the string "Hello World" into an array ["Hello", "World"].
+
+    // Create a StringBuilder to store the reversed string
+    StringBuilder reversed = new StringBuilder();
+
+    // Iterate through the words array in reverse order
+    for (int i = words.length - 1; i >= 0; i--) {
+        // Append each word to the StringBuilder
+        reversed.append(words[i]);
+        
+        // Append a space after each word except for the last one
+        if (i > 0) {
+            reversed.append(" ");
+        }
+    }
+
+    // Convert the StringBuilder to a string and return
+    return reversed.toString();
+}
+TC:O(N)
+SC:O(N)
+Optimized Approach:
+static String reverseStringWordWise(String input) {
+        // Write your code here
+        String result="";
+        int i = input.length()-1;
+        int end=input.length();
+        while(i>=0){
+            if(input.charAt(i)==' '){
+                result=result+input.substring(i+1, end)+" ";
+                end=i;
+            }
+            i--;
+        }
+        result = result + input.substring(i + 1, end); // last word needs to be processed
+        return result;
+    }
+TC:O(N)
+SC:O(1)
